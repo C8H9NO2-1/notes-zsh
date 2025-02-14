@@ -1,4 +1,8 @@
-mkdir ~/.notes 2> /dev/null
+if ! test -d ~/.notes; then
+    # echo "Directory does not exists."
+    mkdir ~/.notes 2> /dev/null
+    git init ~/.notes > /dev/null 2>&1
+fi
 
 # Create of modify an existing note
 function note() {
