@@ -33,7 +33,23 @@ function pullnote() {
 
 # Create of modify an existing note
 function note() {
+    temp=0
+    if test -f ~/.notes/$1.md; then
+        temp=1
+    fi
+
     $EDITOR ~/.notes/$1.md
+    # We check if the file exists
+    if [[ -f ~/.notes/$1.md ]]; then
+        cd ~/.notes
+        git add $1.md
+        if [[ ${temp} -eq 1 ]]; then
+            git commit -m "Modifying $1.md"
+        else
+            git commit -m "Creating $1.md"
+        fi
+        cd -
+    fi
 }
 
 # List all the notes in the system
