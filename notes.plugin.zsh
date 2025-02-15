@@ -25,6 +25,12 @@ function pushnote() {
     cd -
 }
 
+function pullnote() {
+    cd ~/.notes/
+    git pull
+    cd -
+}
+
 # Create of modify an existing note
 function note() {
     $EDITOR ~/.notes/$1.md
