@@ -4,6 +4,21 @@ if ! test -d ~/.notes; then
     git init ~/.notes > /dev/null 2>&1
 fi
 
+# Add a remote git repo
+function remotenote() {
+    if [[ $# -ne 1 ]]; then
+        echo "Please pass the remote to this function."
+    else
+        cd ~/.notes/
+        git remote add origin $1
+        touch .gitignore
+        git add .gitignore
+        git commit -m "Adding a gitignore file"
+        git push --set-upstream origin main
+        cd -
+    fi
+}
+
 # Create of modify an existing note
 function note() {
     $EDITOR ~/.notes/$1.md
