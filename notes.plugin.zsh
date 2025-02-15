@@ -19,6 +19,12 @@ function remotenote() {
     fi
 }
 
+function pushnote() {
+    cd ~/.notes/
+    git push
+    cd -
+}
+
 # Create of modify an existing note
 function note() {
     $EDITOR ~/.notes/$1.md
