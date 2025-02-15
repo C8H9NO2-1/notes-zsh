@@ -21,6 +21,25 @@ function remotenote() {
     fi
 }
 
+# Clone a remote git repo
+function clonenote() {
+    if [[ $# -ne 1 ]]; then
+        echo "Please pass the remote to this function."
+    else
+        # cd ~/
+        rm -rf ~/.notes
+        git clone $1
+        # We get the name of the directory
+        str=$1
+        temp=(${(@s:/:)${str}})
+        index=${#temp[@]}
+        other_temp=(${(@s/./)${temp[index]}})
+        name=${other_temp[1]}
+        mv ${name} ~/.notes
+        # cd -
+    fi
+}
+
 function pushnote() {
     cd ~/.notes/
     git push
