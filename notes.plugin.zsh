@@ -1,3 +1,5 @@
+#TODO:Add echo everywhere to make it more clear
+
 if ! test -d ~/.notes; then
     # echo "Directory does not exists."
     mkdir ~/.notes 2> /dev/null
