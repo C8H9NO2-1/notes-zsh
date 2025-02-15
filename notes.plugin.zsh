@@ -59,5 +59,13 @@ function notes() {
 
 # Delete an existing note
 function delnote() {
-    rm ~/.notes/$1.md
+    if [[ -f ~/.notes/$1.md ]]; then
+        cd ~/.notes
+        git rm $1.md
+        git commit -m "Removing $1.md"
+        cd -
+    else
+        echo "This note doesn't exists"
+    fi
+    # rm ~/.notes/$1.md
 }
